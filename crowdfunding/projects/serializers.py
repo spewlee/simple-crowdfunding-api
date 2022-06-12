@@ -7,7 +7,7 @@ from .models import Project, Pledge, Comment
 class PledgeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pledge
-        fields = ['amount','comment', 'annoymous', 'project', 'supporter']
+        fields = ['id', 'amount','comment', 'annoymous', 'project', 'supporter']
 
     def create(self, validated_data):
         return Pledge.objects.create(**validated_data)
@@ -17,7 +17,7 @@ class PledgeSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ['project', 'author', 'date', 'body']
+        fields = ['id', 'project', 'author', 'date', 'body']
 
     def create(self, validated_data):
         return Comment.objects.create(**validated_data)
@@ -34,7 +34,7 @@ class CommentDetailSerializer(CommentSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
        model = Project
-       fields= ['title', 'description', 'goal_amount', 'image', 'date_created', 'due_date', 'owner']
+       fields= ['id','title', 'description', 'goal_amount', 'image', 'date_created', 'due_date', 'owner']
 
     def create(self, validated_data):
         return Project.objects.create(**validated_data)
